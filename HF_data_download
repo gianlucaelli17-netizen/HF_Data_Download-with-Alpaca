@@ -1,9 +1,8 @@
-#requires pybroker form which we import the Alpaca package and the registration to Alpaca
 
 pip install -U lib-pybroker
 
 import os
-from pyboroker import Alpaca
+from pyboroker import alpaca
 
 #setting app Alpaca with a secure autentication using enviroment stored variables
 
@@ -14,9 +13,9 @@ alpaca = Alpaca(os.environ['ALPACA_API_KEY'], os.environ['ALPACA_SECRET_KEY'])
 #Suppose we want to download 1 year of 1 minute data for AAPL:
 
 tickers=['AAPL']
-data_1m= alpaca.query(
-        tickers,
-        start_date='01/01/2025'
-        end_date='31/12/2025
-        time_frame='1m'
+data_1m = alpaca.query(
+    tickers=tickers,
+    start_date="2025-01-01",
+    end_date="2025-12-31",
+    time_frame="1m"
 )
