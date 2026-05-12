@@ -1,3 +1,12 @@
+import pandas as pd
+import time
+from datetime import datetime, timedelta
+from pybroker import Alpaca
+import os
+
+## API connection
+
+alpaca = Alpaca(os.environ['ALPACA_API_KEY'], os.environ['ALPACA_SECRET_KEY'])
 
 #this function loads a datset with the S&P500 composition over the years and turns it
 #into a dataframe of shape date|tickers 
