@@ -8,7 +8,7 @@ def load_sp500_components(path):
     df = df.explode("tickers_list")
     df["tickers_list"] = df["tickers_list"].str.strip()
 
-    return df[["date", "tickers"]].dropna().reset_index(drop=True)
+    return df[["date", "tickers_list"]].dropna().reset_index(drop=True)
 #Creates daily components list
 
 # Fills in the gaps between dates giving a day by day composition of the index
