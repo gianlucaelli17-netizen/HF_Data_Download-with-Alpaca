@@ -29,7 +29,7 @@ def build_daily_components(df):
     calendar = pd.DataFrame({"date": all_days})
 
     # 4. groups tickers by date
-    grouped = df.groupby("date")["tickers"].apply(list).reset_index(name="tickers")
+    grouped = df.groupby("date")["tickers_list"].apply(list).reset_index(name="tickers_list")
 
     # 5. Backward filling
     daily_comp = pd.merge_asof(
@@ -66,7 +66,7 @@ def download_hf_data(daily_comp, start_date, end_date, timeframe="1m", block_day
     """
 
     # 1. Convert date column
-   daily_comp["date"] = pd.to_datetime(daily_comp["date"], format="%m/%d/%Y")
+    daily_comp["date"] = pd.to_datetime(daily_comp["date"], format="%m/%d/%Y")
 
     # 2. Filter global range
     start_global = pd.Timestamp(start_date)
@@ -99,7 +99,7 @@ def download_hf_data(daily_comp, start_date, end_date, timeframe="1m", block_day
             continue
 
         # Extract tickers for this block
-        tickers_block = list(map(str, sorted(set().union(*block["tickers"]))))
+        tickers_block = list(map(str, sorted(set().union(*block["tickers_list"]))))
 
 
         print(f"\n[INFO] Downloading {len(tickers_block)} tickers | {start.date()} → {end.date()}")
